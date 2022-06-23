@@ -9,7 +9,6 @@ router.get("/phones", async  (req, res, next) =>{
 
         const reponse = await PhoneModel.find().select("name")
         res.json(reponse)
-        console.log(response)
         
     } catch (error) {
         next(error)
@@ -20,14 +19,13 @@ router.get("/phones", async  (req, res, next) =>{
 
 
 //GET /phone/:id => Show a phone details
-router.get("/phone/:id", async  (req, res, next) =>{
+router.get("/phones/:id", async  (req, res, next) =>{
 
     const {id} =req.params
 
     try {
         const reponse = await PhoneModel.findById(id)
         res.json(reponse)
-        console.log(response)
         
     } catch (error) {
         next(error)

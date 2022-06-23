@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-import getPhoneDetailsService from '../../services/phones.services'
+import axios from 'axios'
 
 import { CircleLoader } from 'react-spinners'
 
-function PhoneDetails() {
+function PhoneDetails(props) {
 
   // estado inicial de los detalles, id que viene del parametro
   const [ detailsPhone, setDetailsPhone ] = useState(null)
 
-  const { id } = useParams()
+  const { id } = props.id
 
   const navigate = useNavigate()
 
@@ -22,7 +22,7 @@ function PhoneDetails() {
   const getdetailsPhone = async () => {
     try {
 
-      const response = await getPhoneDetailsService(id)
+      const response = await axios.get(`http://localhost:5005/phones/${id}`)
       setDetailsPhone(response.data)
        
     } catch (error) {
